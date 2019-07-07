@@ -3,17 +3,22 @@ import axios from "axios";
 import { AppRegistry, View, Text } from "react-native";
 import { name as appName } from "../app.json";
 
-export default class Tester extends React.Component {
+const AUTH_ENDPOINT = "/api/v1/authn";
+
+export default class OktaClient extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { content: "Click to call server" };
+    this.state = { content: `Click to authenticate with ${props.user}` };
   }
 
   loadDataFromServer = () => {
     this.setState({ content: "Calling server..." });
     // Pull data from the web and inject it into the panel
     axios
-      .get("https://facebook.github.io/react-native/movies.json")
+      .post(`https://${this.props.server}${AUTH_ENDPOINT}`, {
+        username: this.props.user,
+        password: this.props.password
+      })
       .then(response => {
         this.setState({ content: JSON.stringify(response.data) });
       })
@@ -32,4 +37,4 @@ export default class Tester extends React.Component {
   }
 }
 
-AppRegistry.registerComponent(appName, () => Tester);
+AppRegistry.registerComponent(appName, () => OktaClient);

@@ -24,7 +24,11 @@ import {
   ReloadInstructions
 } from "react-native/Libraries/NewAppScreen";
 
-import Tester from "./Tester";
+import OktaClient from "./OktaClient";
+
+// Create your own okta.json file with your own server, username, and password
+// to test Okta authentication
+import { server, user, password } from "../okta.json";
 
 const App = () => {
   return (
@@ -45,8 +49,8 @@ const App = () => {
               </Text>
             </View>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Check out the Tester</Text>
-              <Tester />
+              <Text style={styles.sectionTitle}>Check out the Okta Client</Text>
+              <OktaClient server={server} user={user} password={password} />
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>See Your Changes</Text>
