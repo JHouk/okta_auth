@@ -31,7 +31,7 @@ export default class OktaClient extends React.Component {
   render() {
     return (
       <View>
-        <Text onPress={this.loadDataFromServer}>{this.state.content}</Text>
+        <Text style={this.props.style} onPress={this.loadDataFromServer}>{this.state.content}</Text>
       </View>
     );
   }
